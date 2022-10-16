@@ -1,0 +1,32 @@
+\documentclass[class=scrartcl,crop=false]{standalone}
+
+\usepackage{../style/smtheorems}
+
+\newtheorem {corollary}     [theorem]     {Corollary}
+\theoremstyle{nonumber}
+\newtheorem* {theorem*}         {Theorem}
+\newtheorem* {corollary*}       {Corollary}
+\theoremstyle{withnumber}
+
+\begin{document}
+
+\section{SMTheorems}
+
+\begin{theorem}
+    $\mathsf{P} = \mathsf{NP}$.
+\end{theorem}
+
+\begin{corollary}[Optional text]
+    $\mathsf{NP} = \mathsf{coNP}$.
+\end{corollary}
+
+\begin{theorem*}
+    $\mathsf{P} = \mathsf{NP}$.
+\end{theorem*}
+
+\begin{corollary*}[Optional text]
+    $\mathsf{NP} = \mathsf{coNP}$.
+\end{corollary*}
+
+
+\end{document}

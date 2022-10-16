@@ -1,0 +1,47 @@
+%% ############################################################################
+%%
+%% Sebastian's symbols
+%%
+%% ############################################################################
+%%
+%% Define some symbols
+%%
+%% ############################################################################
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{smsymbols}[2020-08-09]
+
+
+%
+% Includes
+%
+
+% mdsymbol / MyriadPro are incompatible with amssymb
+\@ifpackageloaded{mdsymbol}{}{\RequirePackage{amssymb}}
+
+% for \text
+\RequirePackage{amsmath}
+
+% for \rotatebox
+\RequirePackage{graphicx}
+
+%
+% Symbols
+%
+
+% triangle qed
+\newcommand{\tqed}{\hfill \text{$\blacktriangleleft$}}
+
+% item with arrow symbol like in Meyer's lectures
+\newcommand{\itemarrow}%
+{%
+    {%
+        \raisebox{0.8mm}
+        {%
+            \rotatebox[origin=c]{180}{$\Lsh$}%
+        }%
+    }%
+}%
+
+
+\endinput

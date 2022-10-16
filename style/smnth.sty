@@ -1,0 +1,115 @@
+%% ############################################################################
+%%
+%% Sebastian's n^th
+%%
+%% ############################################################################
+%%
+%% Prints ordinal numbers with the appropriate superscript
+%%
+%% Usage:
+%%   * without second parameter:
+%%     \nth{5}   -> 1^st
+%%     \nth{5}   -> 5^th
+%%     \nth{102} -> 102^nd
+%%
+%%     Currently unable to handle the case that the last symbol is not a number:
+%%     \nth{(n+1)} -> (n+1)^th    instead of  (n+1)^st
+%%
+%%     * with second parameter:
+%%     \nth{(n+1)}{st} -> (n+1)^st
+%%
+%% ############################################################################
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{smnth}[2020-08-09]
+
+
+%
+% This is a modified version of ``nth.sty'' by Donald Arsenau
+%
+%  Original package header:
+%
+
+% nth.sty  version 2002/27/02 Donald Arseneau
+% Ordinal numbering style, 1st 2nd 3rd 4th 5th... 12th... 101st 102nd...
+%
+% (Public domain: take, include, extract, whatever)
+%
+% In LaTeX:
+%           \usepackage[super,negative]{nth}
+% where option [super] gives superscript `th'
+% and option [negative] allows ``st, nd, rd'' suffixes on negative numbers.
+%
+% example:  \renewcommand{\thesection}{\ordinal{section}}
+% or        \renewcommand{\thesection}{\@ordinal\c@section}
+% or        \renewcommand{\thesection}{\nth\c@section}
+%
+% In plain TeX:
+%           \input nth.sty
+% use:      \nth{<number>}.
+% Change formatting by redefining \nthscript and \nthtest
+
+%
+%  Dependencies
+%
+
+\RequirePackage{xstring}
+\RequirePackage{xparse}
+
+%
+% The main command
+%
+
+\DeclareDocumentCommand{\nth}{ m g }% optinal argument in curly braces
+{%
+    \IfNoValueTF{#2}%
+    {%
+        \IfInteger{#1}%
+        {\nthH{#1}}%
+        {{#1\nthscript{th}}}%
+    }%
+    {%
+        {#1\nthscript{#2}}%
+    }%
+}%
+
+%
+% Internal options
+%
+
+% formatting hook for ordinals (\let\nthscript\textsuperscript)
+\def\nthscript#1{\textsuperscript{#1}}% alternate: \def\nthscript#1{$\rm^{#1}$}
+
+% formatting hook for all negative numbers giving ``th''
+\def\nthtest{=} % alternate: \def\nthtest{>}
+
+% minus sign using math mode:
+\def\nthM#1{\if -#1\ifmmode-\else$-$\fi\else #1\fi}
+
+%
+% Internal Code
+%
+
+\def\nthH#1{% Ffirst print number:
+    \expandafter\nthM\number#1\relax%
+    \nthscript{%
+        \ifnum#1\nthtest0 th\else% negatives are all ``th'' (depending on \nthtest)
+        \expandafter\nthSuff\expandafter0\number\ifnum#1<0-\fi#1\delimiter%
+        \fi%
+    }}%
+
+% print suffix depending on last two digits:
+\def\nthSuff#1#2#3%
+{%
+    \ifx\delimiter#3%    % #1#2 are last two digits
+    \ifnum#1=1 th%       %  teens are always ``th''
+    \else%                % use appropriate suffix
+    \ifcase#2 th\or st\or nd\or rd\else th\fi%
+    \fi%
+    \else%                % continue scanning for last two digits
+    \expandafter\nthSuff\expandafter#2\expandafter#3%
+    \fi%
+}%
+
+
+\endinput

@@ -1,0 +1,42 @@
+%% ############################################################################
+%%
+%% language dependent stuff: English
+%%
+%% ############################################################################
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{lang}[2020-08-09]
+
+
+%
+% Packages
+%
+
+\RequirePackage{ifxetex}
+
+\ifxetex%
+    % XeLaTeX - no need for fontenc & inputenc. Use polyglossia instead of babel
+    \RequirePackage{polyglossia}
+    \setdefaultlanguage[variant=american]{english}
+\else%
+    % no XeLaTeX - use fontenc, inputenc, and babel
+    \RequirePackage[T1]{fontenc}
+    \RequirePackage[utf8]{inputenc}
+    \RequirePackage[american]{babel}
+\fi%
+
+%
+% Quotes
+%
+
+\RequirePackage{csquotes}
+
+% \ifxetex
+%     \newcommand*\glqq{„}
+%     \newcommand*\grqq{“}
+% \fi
+
+\newcommand{\quot}[1]{\enquote{#1}}
+
+
+\endinput

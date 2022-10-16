@@ -1,0 +1,32 @@
+\documentclass[class=scrartcl,crop=false]{standalone}
+
+\usepackage{../style/smfigures}
+
+\begin{document}
+
+\section{SMFigures}
+
+\begin{figure}[t]
+    {%
+        \centering
+        \subcaptionbox{An automaton.}[0.45\textwidth][c]
+        {%
+            AUTOMATON1
+        }
+    }
+    {%
+        \centering
+        \subcaptionbox{Another automaton.\label{Subfigure}}[0.45\textwidth][c]
+        {%
+            AUTOMATON2
+        }
+    }
+    \caption{Two automata.}
+    \label{Figure}
+\end{figure}
+
+Reference to a figure: \ref{Figure}
+
+Reference to a subfigure: \ref{Subfigure}
+
+\end{document}

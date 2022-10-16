@@ -1,0 +1,142 @@
+% ########################
+% TIKZ
+% ########################
+
+% Includes
+\usepackage{tikz}
+\usepackage{pgf}
+\usepackage{tikz-dependency}
+\usetikzlibrary{arrows}
+\usetikzlibrary{automata}
+\usetikzlibrary{shapes}
+\usetikzlibrary{backgrounds}
+\usetikzlibrary{petri}
+\usetikzlibrary{calc}
+\usetikzlibrary{decorations}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{positioning}
+\usetikzlibrary{patterns}
+\usetikzlibrary{petri}
+\usetikzlibrary{fit}
+\usetikzlibrary{graphs}
+\usetikzlibrary{calc}
+\usetikzlibrary{tikzmark}
+
+% squares
+\tikzset%
+{%
+    square/.style={regular polygon,regular polygon sides=4}
+}%
+
+% for game trees
+\tikzset%
+{%
+    treenode/.style = {align=center, inner sep=0pt, text centered,
+        font=\sffamily},
+    roundpos/.style = {treenode, circle, black, draw=black,
+        minimum size=2.5em},
+    squarepos/.style = {treenode, rectangle, black, draw=black,
+        minimum width=2em, minimum height=2em},
+}%
+
+% for slides
+% \tikzset
+% {
+%     invisible/.style={opacity=0},
+%     visible on/.style={alt={#1{}{invisible}}},
+%     alt/.code args={<#1>#2#3}{%
+%         \alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}} % \pgfkeysalso doesn't change the path
+%     },
+% }
+
+% boxes (graphic representation for elements of the transition monoid)
+\tikzset%
+{%
+    tboxoutline/.style =
+    {
+        draw,
+        thick,
+        minimum size=6em,
+        inner sep=0pt,
+        outer sep=0pt,
+    },
+    tboxstate/.style =
+    {
+        minimum width=4pt,
+        minimum height=2pt,
+        inner sep=0pt,
+        fill
+    },
+    tboxarrow/.style =
+    {
+    },
+    pics/tbox/.style 2 args =
+    {
+        code =
+        {
+            \node[tboxoutline,pic actions] (-box) {};
+            \foreach \i in {1,...,#1}
+            {
+                \path
+                    (-box.north west)
+                    --
+                    node
+                        [tboxstate,anchor=east,pos=-1/#1/2+\i/#1,pic actions]
+                        (-box-in-\i)
+                        {}
+                    (-box.south west);
+                \path
+                    (-box.north east) --
+                    node
+                        [tboxstate,anchor=west,pos=-1/#1/2+\i/#1,pic actions]
+                        (-box-out-\i)
+                        {}
+                (-box.south east);
+            }
+
+            \foreach \i/\j/\d in {#2}
+            {
+                \draw
+                    [
+                        tboxarrow,
+                        decoration =
+                        {
+                            markings,
+                            mark=
+                                at position 1 with
+                                {
+                                    \arrow[scale=1,>=triangle 45]{>}
+                                }
+                        }
+                        ,
+                        postaction={decorate}
+                    ]
+                    (-box-in-\i.east)
+                    --
+                    node
+                        [pos=.6,\d]
+                        {}
+                    (-box-out-\j.west);
+            }
+        }
+    },
+    tbox color/.style={
+        tboxstate/.append style={fill=#1},
+        tboxoutline/.append style={draw=#1},
+        tboxarrow/.append style={draw=#1},
+    },
+    trans/.style =
+    {
+        thick,
+    },
+    dot/.style =
+    {
+        circle,
+        draw,
+        minimum size=6pt,
+        inner sep=0pt,
+        fill,
+    },
+}%

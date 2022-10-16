@@ -1,0 +1,33 @@
+%% ############################################################################
+%%
+%% Sebastian's slanted leq
+%%
+%% ############################################################################
+%%
+%% Make leq and geq default to the slanted version
+%%
+%% ############################################################################
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{smslantedleq}[2020-08-09]
+
+
+% mdsymbol / MyriadPro are incompatible with amssymb
+\@ifpackageloaded{mdsymbol}{}{\RequirePackage{amssymb}}
+
+% store old symbols
+\let\leqstraight\leq% or just use le
+\let\geqstraight\geq% or just use ge
+\let\nleqstraight\nleq%
+\let\ngeqstraight\ngeq%
+\let\nle\nleq%
+\let\nge\ngeq%
+
+% overwrite
+\let\leq\leqslant%
+\let\geq\geqslant%
+\let\nleq\nleqslant%
+\let\ngeq\ngeqslant%
+
+
+\endinput

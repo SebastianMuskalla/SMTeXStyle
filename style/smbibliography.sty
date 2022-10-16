@@ -1,0 +1,71 @@
+%% ############################################################################
+%%
+%% Sebastian's bibliography
+%%
+%% ############################################################################
+%%
+%%
+%% ############################################################################
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{smbibliography}[2020-08-09]
+
+% Festlegung Art der Zitierung - Havardmethode: Abkuerzung Autor + Jahr
+\RequirePackage%
+[%
+    backend=biber,    % user biber instead of bibtex for advanced features
+    style=ext-alphabetic , % alphabet style for bibliography and citation
+    maxnames=9,       % truncate list of authors if they exceed this name
+    hyperref=true,    % issue a warning if hyperref is not loaded
+    giveninits=true,  % only show initials for given names
+    isbn=false,       % do not show ISBN
+    doi=false,        % do not show DOI
+    maxalphanames=6,  % do not truncate initials in unless there are more than 6 authors ...
+    minalphanames=5,  % in this case, truncate to 5 authors
+    articlein=false,  % don't show "In:" for journal articles
+    abbreviate=false, % do not abbreviate stuff like "volume"
+]%
+{biblatex}
+
+% cite author plus reference
+% note: this will not work as intended if more than one key is supplied
+\newcommand{\citea}[1]{\citeauthor{#1}~\cite{#1}}
+
+% allow : in the "pages" field
+\DeclareNumChars*{:}
+
+% remove some fields
+\DeclareSourcemap%
+{%
+    \maps[datatype=bibtex]%
+    {%
+        % remove publisher for everything but books
+        \map%
+        {%
+            \pernottype{book}
+            \step[fieldset=publisher, null]
+        }%
+        % remove editor and address for everything
+        \map%
+        {%
+            \step[fieldset=editor, null]
+            \step[fieldset=address, null]
+        }
+    }
+}
+
+% don't show URLs in monospace
+\AtEveryBibitem{\urlstyle{same}}
+
+% put titles of papers "sentence case" (first letter uppercase, rest lowercase)
+% does not apply to titles of books / journals
+\DeclareFieldFormat*{titlecase:title}{\MakeSentenceCase*{#1}}
+
+% show title in italic and without quotiation marks
+\DeclareFieldFormat*{title}{\mkbibitalic{#1\isdot}}
+
+% don't show booktitle / journaltitle in italic
+\DeclareFieldFormat*{journaltitle}{#1\isdot}
+\DeclareFieldFormat*{booktitle}{#1\isdot}
+
+\endinput

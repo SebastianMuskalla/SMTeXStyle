@@ -1,0 +1,98 @@
+%% ############################################################################
+%%
+%% Sebastian's theorem environments
+%%
+%% ############################################################################
+%%
+%%
+%%
+%% ############################################################################
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{smtheorems}[2020-08-09]
+
+
+\RequirePackage{amsthm}
+
+\RequirePackage[%
+    capitalise,% use "THeorem" instead of "theorem"
+    noabbrev,% don't abbreviate e.g. "equation" as "eq"
+]{cleveref}
+
+% Theorem numbering
+\def\theoremnumberstyle{changesection}
+
+% Theoremstyle
+\newtheoremstyle{withnumber}%   % name
+    {1em}%                      % Space above
+    {1.5em}%                    % Space below
+    {\normalfont}%              % Body font
+    {}%                         % Indent amount
+    {\bfseries}%                % Theorem head font
+    {\newline}%                 % Punctuation after theorem head
+    {0.5em}%                    % Space after theorem head
+    {#2 #1\thmnote{ \ #3}}%    % Theorem head spec (can be left empty, meaning ‘normal’)
+
+\newtheoremstyle{withoutnumber}%  % name
+    {1em}%                   % Space above
+    {1.5em}%                 % Space below
+    {\normalfont}%           % Body font
+    {}%                      % Indent amount
+    {\bfseries}%             % Theorem head font
+    {\newline}%              % Punctuation after theorem head
+    {0.5em}%                 % Space after theorem head
+    {#1\thmnote{ \ #3}}%    % Theorem head spec (can be left empty, meaning ‘normal’)
+
+\newtheoremstyle{namedwithnumber}%   % name
+    {1em}%                      % Space above
+    {1.5em}%                    % Space below
+    {\normalfont}%              % Body font
+    {}%                         % Indent amount
+    {\bfseries}%                % Theorem head font
+    {\newline}%                 % Punctuation after theorem head
+    {0.5em}%                    % Space after theorem head
+    {#2 #1\thmnote{: \ #3}}%    % Theorem head spec (can be left empty, meaning ‘normal’)
+
+\newtheoremstyle{namedwithoutnumber}%  % name
+    {1em}%                   % Space above
+    {1.5em}%                 % Space below
+    {\normalfont}%           % Body font
+    {}%                      % Indent amount
+    {\bfseries}%             % Theorem head font
+    {\newline}%              % Punctuation after theorem head
+    {0.5em}%                 % Space after theorem head
+    {#1\thmnote{: \ #3}}%    % Theorem head spec (can be left empty, meaning ‘normal’)
+
+% set default style
+\theoremstyle{withnumber}
+
+% theorems are numbered within the section
+\providecommand{\TheoremLocaleName}{Theorem}
+\newtheorem{theorem}{\TheoremLocaleName}[section]
+
+%
+% Hackfix for itemize / enumerate at the beginning of a theorem
+%
+\newcommand{\skipfix}{\leavevmode\vspace{-2.2em}}
+
+% itemize/enumerate at the beginning of a thm
+\newenvironment{thmenumerate}%
+{%
+    \skipfix%
+    \begin{enumerate}%
+}%
+{%
+    \end{enumerate}%
+}%
+
+\newenvironment{thmitemize}%
+{%
+    \skipfix%
+    \begin{itemize}%
+}%
+{%
+    \end{itemize}%
+}%
+
+
+\endinput

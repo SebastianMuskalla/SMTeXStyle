@@ -1,0 +1,46 @@
+%% ############################################################################
+%%
+%% Sebastian's proof environments
+%%
+%% ############################################################################
+%%
+%%
+%%
+%% ############################################################################
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{smproofs}[2020-08-09]
+
+
+\RequirePackage{amsthm}
+
+% proof in bold font, colon and newline afterwards
+\renewenvironment{proof}[1][\proofname]%
+{%
+    \par%
+    \pushQED{\qed}%
+    \normalfont\topsep6\p@\@plus6\p@\relax%
+    \trivlist%
+    \item[\hskip\labelsep\bfseries%
+    #1:]\mbox{}\\*\ignorespaces%
+}%
+{%
+    \popQED\endtrivlist\@endpefalse%
+}%
+
+% shortproof without newline
+\newenvironment{shortproof}[1][\proofname]%
+{%
+    \par%
+    \pushQED{\qed}%
+    \normalfont\topsep6\p@\@plus6\p@\relax%
+    \trivlist%
+    \item[\hskip\labelsep\bfseries%
+    #1:]\mbox{}\ignorespaces%
+}%
+{%
+    \popQED\endtrivlist\@endpefalse%
+}%
+
+
+\endinput

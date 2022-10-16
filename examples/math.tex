@@ -1,0 +1,237 @@
+\documentclass[class=scrartcl,crop=false]{standalone}
+
+\usepackage{../style/smmath}
+
+\begin{document}
+
+\section{SMMath}
+
+
+Original delimiter spacing:
+\[
+    \originalleft\{ 2^{2^{2^n}} \originalright\}
+\]
+
+Fixed delimiter spacing:
+\[ \left\{ 2^{2^{2^n}} \right\} \]
+
+
+Original left-right display math:
+\[
+    \left|A^{det}\right|
+\]
+
+Original left-right inline math:
+\begin{center}
+\(
+    \left|A^{det}\right|
+\)
+\end{center}
+
+Automatic left-right display math:
+\[
+    \card{A^{det}}
+\]
+
+Automatic left-right inline math:
+\begin{center}
+\(
+    \card{A^{det}}
+\)
+\end{center}
+
+
+Original left-right display math:
+\[
+    \left\{
+        \begin{array}{l} 1 \\ 2 \\ 3 \end{array}
+        \middle|
+        \begin{array}{l} 4 \\ 5 \\ 6 \end{array}
+    \right\}
+\]
+
+Original left-right inline math:
+\begin{center}
+\(
+    \left\{
+        \begin{array}{l} 1 \\ 2 \\ 3 \end{array}
+        \middle|
+        \begin{array}{l} 4 \\ 5 \\ 6 \end{array}
+    \right\}
+\)
+\end{center}
+
+Automatic left-right display math:
+\[
+    \set{
+        \begin{array}{l} 1 \\ 2 \\ 3 \end{array}
+        \mdl|
+        \begin{array}{l} 4 \\ 5 \\ 6 \end{array}
+    }
+\]
+
+Automatic left-right inline math:
+\begin{center}
+\(
+    \set{
+        \begin{array}{l} 1 \\ 2 \\ 3 \end{array}
+        \mdl|
+        \begin{array}{l} 4 \\ 5 \\ 6 \end{array}
+    }
+\)
+\end{center}
+
+
+\[
+    \paren{2^{2^{2^n}}}
+\]
+
+\[
+    \braced{a,b, c} \set{a,b,c}
+\]
+
+\[
+    \bracketed{a,b,c}
+\]
+
+\[
+    \ceil{2.5} = 3 = \floor{3.5}
+\]
+
+\[
+    M \doublebracketed{p(f(a))},  M \sem{p(f(a))}
+\]
+
+\[
+    \angled{x^2 - y}
+\]
+
+\[
+    \piped{\set{a,b,c}}, \card{\set{a,b,c}} = 3
+\]
+
+\[
+    \Set{ a^nb^n}{n \in N}
+\]
+
+\[
+    \fromto{5}{10}, \oneto{5}, \zeroto{10}
+\]
+
+\[
+    \card{\powerset{X}} = 2^{\card{X}}
+\]
+
+\[
+    N \to Z = Z \from N
+\]
+
+\[
+    \true \wedge \false = \false
+\]
+
+\[
+    \monotrue \wedge \monofalse = \monofalse
+\]
+
+\[
+    \itrue \wedge \ifalse = \ifalse
+\]
+
+\[
+    f_\arity{2}
+\]
+
+\[
+    1 \text{km} \corrto 1.6mi
+\]
+
+\[
+    \true \wedgevee \false \neq \false \veewedge \true
+\]
+
+\[
+    n \bnfdef 0 \bnf n+1
+\]
+
+\[
+    X = Y \dotcup Z, X = \bigdotcup_{i \in N} Y_i , X = Y \dotsqcup Z, X = \bigdotsqcup_{i \in N} Y_i ,
+\]
+
+\[
+    X\up, X\down, \uc{X}, \dc{X}
+\]
+
+\[
+    p \models p \vee q \lequiv q \vee p
+\]
+
+\[
+    \littleO{f} \cap \littleOmega{f} = \emptyset
+\]
+\[
+    \bigO{f} \cap \bigOmega{f} = \bigTheta{f}
+\]
+
+\[
+    \ldots \blank \blank a \ldots a \blank \blank \ldots
+\]
+
+\[
+    \Space{M} \colon x \mapsto \Space{M}{x}
+\]
+\[
+    \Time{M} \colon x \mapsto \Time{M}{x}
+\]
+
+\[
+    \RECURSIVE \subsetneq \RECENUM
+\]
+
+\[
+    \APTIME, \APSPACE, \AEXPTIME, \AEXPSPACE
+\]
+
+\[
+    \co\NPTIME = \NPTIME ?
+\]
+
+\[
+    \LOGSPACE \subseteq \NLOGSPACE \subseteq \PTIME \subseteq \NPTIME \subseteq \PSPACE \subseteq \EXPTIME \subseteq \NEXPTIME \subseteq \EXPSPACE \subseteq 2\EXPTIME \subseteq \ldots
+\]
+
+\[
+  k\EXPTIME \subseteq \ELEMENTARY \subseteq \TOWER \subseteq \PRIMREC \subseteq \ACKERMANN
+\]
+
+\[
+    \Tower{2} = \kexp{2}{2} = 2^{2^2}
+\]
+
+\[
+    \Acker{5}{5} \text{ is very large}
+\]
+
+
+\[
+    \mathsf{SAT} \polyleq \mathsf{HamiltonianCycle} \polygeq \mathsf{SAT}
+\]
+
+\[
+    \mathsf{RADAR} \subword \mathsf{ABRACADABRA}
+\]
+
+\[
+    q \tow{w} p, q \towin{w}{i} p
+\]
+
+\[
+    \lang{A},  \olang{B}, \Parikh{\lang{C}}
+\]
+
+\[
+    a^nSb^n \derive a^{n+1}Sb^{n+1}
+\]
+
+
+\end{document}

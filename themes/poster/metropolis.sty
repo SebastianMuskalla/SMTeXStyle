@@ -1,0 +1,188 @@
+%% ############################################################################
+%%
+%% metropolis style for smposter/tikzposter
+%%
+%% ############################################################################
+%%
+%%
+%%
+%% ############################################################################
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{smposter_metropolis}[2020-08-09]
+
+%
+% Color style
+%
+
+\definecolorstyle{metropolis} {}
+{
+    % background
+    \colorlet{backgroundcolor}{metrowhite}
+    \colorlet{framecolor}{metroblack}
+    % title
+    \colorlet{titlefgcolor}{metrowhite}
+    \colorlet{titlebgcolor}{metroblack}
+    % block
+    \colorlet{blocktitlebgcolor}{metromedgray}
+    \colorlet{blocktitlefgcolor}{metroblack}
+    \colorlet{blockbodybgcolor}{metrolightgray}
+    \colorlet{blockbodyfgcolor}{metroblack}
+    % innerblock
+    \colorlet{innerblocktitlebgcolor}{metromedgray}
+    \colorlet{innerblocktitlefgcolor}{metroblack}
+    \colorlet{innerblockbodybgcolor}{metrolightgray}
+    \colorlet{innerblockbodyfgcolor}{metroblack}
+    % note
+    \colorlet{notefgcolor}{black}
+    \colorlet{notebgcolor}{yellow!50!white}
+    \colorlet{noteframecolor}{yellow}
+}
+
+%
+% Title style
+%
+
+\definetitlestyle{metropolis}
+{
+    width=\textwidth,
+    roundedcorners=0,
+    linewidth=0pt,
+    innersep=10pt,
+    titletotopverticalspace=-5mm,
+    titletoblockverticalspace=15mm
+}
+{
+    \begin{scope}
+    [
+        line width=\titlelinewidth,
+        rounded corners=\titleroundedcorners
+    ]
+        \draw[fill=titlebgcolor]
+            (\titleposleft,\titleposbottom) rectangle (\titleposright,\titlepostop);
+    \end{scope}
+}
+
+%
+% Block styles
+%
+
+% with header
+\defineblockstyle{metropolis}
+{
+    titlewidthscale=1,
+    bodywidthscale=1,
+    titleleft,
+    titleoffsetx=0pt,
+    titleoffsety=0pt,
+    bodyoffsetx=0mm,
+    bodyoffsety=15mm,
+    % bodyoffsety=15mm,
+    bodyverticalshift=10mm,
+    roundedcorners=0,
+    linewidth=0pt,
+    titleinnersep=6mm,
+    bodyinnersep=1cm
+}
+{
+    \draw
+    [
+        draw=none,
+        fill=blockbodybgcolor,
+        rounded corners=\blockroundedcorners
+    ]
+        (blockbody.south west) rectangle (blockbody.north east);
+    \ifBlockHasTitle
+    \draw
+    [
+        draw=none,
+        fill=blocktitlebgcolor,
+        rounded corners=\blockroundedcorners
+        ]
+        (blocktitle.south west) rectangle (blocktitle.north east);
+    \fi
+}
+
+% without header
+\defineblockstyle{metropolis-notitle}
+{
+    titlewidthscale=1,
+    bodywidthscale=1,
+    titleleft,
+    titleoffsetx=0pt,
+    titleoffsety=0pt,
+    bodyoffsetx=0mm,
+    bodyoffsety=0mm,
+    % bodyoffsety=15mm,
+    bodyverticalshift=0mm,
+    roundedcorners=0,
+    linewidth=0pt,
+    titleinnersep=6mm,
+    bodyinnersep=1cm
+}
+{
+    \draw
+    [
+        draw=none,
+        fill=blockbodybgcolor,
+        rounded corners=\blockroundedcorners
+    ]
+        (blockbody.south west) rectangle (blockbody.north east);
+}
+
+% just text
+\defineblockstyle{invisible}
+{
+    titlewidthscale=1,
+    bodywidthscale=1,
+    titleleft,
+    titleoffsetx=0pt,
+    titleoffsety=0pt,
+    bodyoffsetx=10mm,
+    bodyoffsety=0mm,
+    % bodyoffsety=15mm,
+    bodyverticalshift=0mm,
+    roundedcorners=0,
+    linewidth=0pt,
+    titleinnersep=6mm,
+    bodyinnersep=0cm
+}
+{
+    \draw
+    [
+        draw=none,
+        fill=none,
+    ]
+        (blockbody.south west) rectangle (blockbody.north east);
+}
+
+%
+% Title code
+%
+
+\settitle
+{%
+    \hspace{2.25em}
+    \vbox
+    {%
+        \vspace{2em}
+        \color{titlefgcolor}
+        {\bfseries\fontsize{70}{85}\selectfont\@title \par}
+        \vspace*{1em}
+        {\Large\textbf{\@author} \par}
+    }
+    \vspace{0.5em}
+}
+
+%
+% Set styles
+%
+
+\usecolorstyle{metropolis}
+\useblockstyle{metropolis}
+\usetitlestyle{metropolis}
+
+% do not display "made with Tikzposter"
+\tikzposterlatexaffectionproofoff
+
+\endinput

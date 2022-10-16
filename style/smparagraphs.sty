@@ -1,0 +1,48 @@
+%% ############################################################################
+%%
+%% Sebastian's paragraphs (and subparagraphs)
+%%
+%% ############################################################################
+%%
+%%
+%% ############################################################################
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{smparagraphs}[2020-08-09]
+
+
+%
+% paragraphs
+%
+
+% newline after paragraph, paragraph bold and underlined
+\renewcommand{\paragraph}%
+{%
+    \scr@startsection%
+        {paragraph}%                       % name
+        {4}%                               % level
+        {\z@}%                             % indent
+        {0ex \@plus -1ex \@minus -.2ex}%   % beforeskip
+        {0.01ex \@plus .2ex}%              % afterskip
+        {\normalfont\normalsize\bfseries}% % style of heading
+}%
+
+%\renewcommand{\theparagraph}{\thesection.\Roman{paragraph}}
+%\renewcommand{\theparagraph}{\Alph{paragraph})}
+% \renewcommand{\theparagraph}{}
+
+% no whitespace after the missing number
+% \usepackage{secdot}
+% \sectionpunct{paragraph}{}
+
+%
+% Subparagraphs
+%
+
+\let\oldsubparagraph\subparagraph%
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1.}}
+
+\newcommand{\subproof}[1]{\oldsubparagraph{#1:}}
+
+
+\endinput

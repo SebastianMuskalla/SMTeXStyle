@@ -1,0 +1,191 @@
+%% ############################################################################
+%%
+%% tcs institute style for smpresentation/beamer
+%%
+%% ############################################################################
+%%
+%%
+%%
+%% ############################################################################
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{smpresentation_tcs}[2020-08-09]
+
+
+%
+% Based on metropolis
+%
+
+\usetheme{metropolis}
+
+%
+% Metropolis options
+%
+
+\metroset{numbering=fraction}
+\metroset{block=fill}
+% \metroset{sectionpage=progressbar} % progress bar on section titles
+% \metroset{progressbar=frametitle} % progress bar under frametitle
+
+%
+% Fonts
+%
+
+% emph as bold
+\DeclareRobustCommand{\em}{%
+    \@nomath\em \if b\expandafter\@car\f@series\@nil
+    \normalfont \else \bfseries \fi}
+
+% decrease fontsize of the date on the titlepage
+\setbeamerfont{date}{size=\scriptsize}
+
+%
+% Colors
+%
+
+% colors
+\setbeamercolor{alerted text}{fg=tubsred}
+\setbeamercolor{normal text}{fg=tcsdarkgreenish, bg=white}
+\setbeamercolor{frametitle}{fg=white, bg=tubsdarkblue} % normally, frametitle uses ``inverted'' normal text
+
+% \setbeamercolor{normal text}{fg=black, bg=white}
+% \setbeamercolor{frametitle}{bg=tubsred} % normally, frametitle uses ``inverted'' normal text
+
+% \setbeamercolor{block title}
+% {%
+%     use=normal text,
+%     fg=white,
+%     bg=tcsdarkmedblue
+% }
+
+% \setbeamercolor{block body}
+% {%
+%     use={block title, normal text},
+%     bg=tcslightblue!30!white
+% }
+
+%
+% Some modifications
+%
+
+% frametitles
+\addtobeamertemplate{frametitle}{}{\usebeamertemplate*{redline}}
+% \addtobeamertemplate{frametitle}{}{\usebeamertemplate*{tcs}}
+% \addtobeamertemplate{frametitle}{}{\usebeamertemplate*{tubstcs}}
+
+\setbeamertemplate{redline}%
+{%
+    \nointerlineskip
+    \begin{beamercolorbox}[wd=\paperwidth]{tcs}
+        \begin{tikzpicture}[overlay]
+            % red bar
+            \fill[tubsred] (0,0) rectangle (\paperwidth, -1pt);
+        \end{tikzpicture}%
+    \end{beamercolorbox}
+}%
+
+\setbeamertemplate{tcs}%
+{%
+    \nointerlineskip
+    \begin{beamercolorbox}[wd=\paperwidth]{tcs}
+        \begin{tikzpicture}[overlay]
+            % tcs logo at the right
+            \node
+                at (10.5,0.2)
+                [anchor=south west,inner sep=0]
+                {\includegraphics[scale=0.02]{img/TCS.png}}
+            ;
+            % red bar
+            \fill[tubsred] (0,0) rectangle (\paperwidth, -1pt);
+        \end{tikzpicture}%
+    \end{beamercolorbox}
+}%
+
+\setbeamertemplate{tubstcs}%
+{%
+    \nointerlineskip
+    \begin{beamercolorbox}[wd=\paperwidth]{tubstcs}
+        \begin{tikzpicture}[overlay]
+            % tcs logo above the TUBS logo
+            \node
+                at (9.4,0.2)
+                [anchor=south west,inner sep=0]
+                {\includegraphics[scale=0.02]{img/TCS.png}}
+            ;
+            % red bar
+            \fill[tubsred] (0,0) rectangle (\paperwidth, -1pt);
+            %  tcs logo aligning nicely with blocks
+            \node at (9.33,0)
+                [anchor=north west,inner sep=0]
+                {\includegraphics[scale=0.35]{img/TUBS.jpg}}
+            ;
+        \end{tikzpicture}%
+    \end{beamercolorbox}
+}%
+
+
+% section heads
+% \setbeamertemplate{progress bar in section page}
+% {%
+%     \vspace*{0.5cm}
+%     \begin{tikzpicture}
+%         % \node
+%         %     at (\textwidth-5,-0.2)
+%         %     [anchor=north east,inner sep=0]
+%         %     {\includegraphics[scale=0.02]{img/TCS.png}}
+%         % ;
+%         \fill [tubsred] (1,0) rectangle (\textwidth, -1.5pt);
+%         % \node at (0,0.25)
+%         %     [anchor=north west,inner sep=0]
+%         %     {\includegraphics[scale=0.4]{img/TUBS.jpg}}
+%         % ;
+%     \end{tikzpicture}%
+% }%
+
+% section heads
+\setbeamertemplate{progress bar in section page}
+{%
+    % \vspace*{0.5cm}
+    \begin{tikzpicture}
+        \fill [tubsred] (1,0) rectangle (\textwidth, -1.5pt);
+    \end{tikzpicture}%
+}%
+
+
+% title
+\setbeamertemplate{title separator}
+{%
+    \begin{tikzpicture}
+        \node
+            at (0.25,-0.2)
+            [anchor=north west,inner sep=0]
+            {\includegraphics[scale=0.02]{img/TCS.png}}
+        ;
+        % red bar
+        \fill [tubsred] (0,0) rectangle (\textwidth-1cm, -1.5pt);
+        \node at (\textwidth-0.35cm,0.25)
+            [anchor=north east,inner sep=0]
+            {\includegraphics[scale=0.4]{img/TUBS.eps}}
+        ;
+    \end{tikzpicture}%
+    \par%
+}%
+
+% standout frames
+\define@key{beamerframe}{standout}[true]
+{%
+    \booltrue{metropolis@standout}
+    \begingroup
+    \setkeys{beamerframe}{c}
+    \setkeys{beamerframe}{noframenumbering}
+    \setbeamercolor{background canvas}
+    {%
+        fg=tubsred,
+        bg=white
+    }
+    \centering
+    \usebeamercolor[fg]{alerted text}
+    \usebeamerfont{standout}
+}
+
+\endinput

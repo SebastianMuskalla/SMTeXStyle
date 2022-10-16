@@ -1,0 +1,165 @@
+
+\documentclass[class=scrartcl,crop=false]{standalone}
+
+\usepackage{../style/smtext}
+
+\RequirePackage{amsmath}
+
+\RequirePackage
+[
+    cal=cm,
+    bb=boondox,
+    frak=boondox,
+    scr=boondoxo
+]
+{mathalpha}
+
+\RequirePackage{bm}
+
+\begin{document}
+
+\section{SMText}
+
+\subsection{Text}
+
+\paragraph{Normal}
+
+ABCDEFGHIJKLMNOPQRSTUVWXYZ\\
+abcdefghijklmnopqrstuvwxyz
+
+\paragraph{Bold}
+
+\textbf{ABCDEFGHIJKLMNOPQRSTUVWXYZ}\\
+\textbf{abcdefghijklmnopqrstuvwxyz}
+
+\paragraph{Italic}
+
+\textit{ABCDEFGHIJKLMNOPQRSTUVWXYZ}\\
+\textit{abcdefghijklmnopqrstuvwxyz}
+
+\paragraph{Bold + Italic}
+
+\textbf{\textit{ABCDEFGHIJKLMNOPQRSTUVWXYZ}}\\
+\textbf{\textit{abcdefghijklmnopqrstuvwxyz}}
+
+
+\subsection{Monospace}
+
+\paragraph{Normal}
+
+\mono{ABCDEFGHIJKLMNOPQRSTUVWXYZ}\\
+\mono{abcdefghijklmnopqrstuvwxyz}
+
+\paragraph{Bold}
+
+\mono{\textbf{ABCDEFGHIJKLMNOPQRSTUVWXYZ}}\\
+\mono{\textbf{abcdefghijklmnopqrstuvwxyz}}
+
+\paragraph{Italic}
+
+\mono{\textit{ABCDEFGHIJKLMNOPQRSTUVWXYZ}}\\
+\mono{\textit{abcdefghijklmnopqrstuvwxyz}}
+
+\paragraph{Bold + Italic}
+
+\mono{\textbf{\textit{ABCDEFGHIJKLMNOPQRSTUVWXYZ}}}\\
+\mono{\textbf{\textit{abcdefghijklmnopqrstuvwxyz}}}
+
+\newpage
+
+\subsection{Math}
+
+\paragraph{Normal}
+
+$ABCDEFGHIJKLMNOPQRSTUVWXYZ$\\
+$abcdefghijklmnopqrstuvwxyz$
+
+\paragraph{text}
+
+$\text{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$\\
+$\text{abcdefghijklmnopqrstuvwxyz}$
+
+\paragraph{mathrm (roman)}
+
+$\mathrm{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$\\
+$\mathrm{abcdefghijklmnopqrstuvwxyz}$
+
+\paragraph{mathsf (sans serif)}
+
+$\mathsf{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$\\
+$\mathsf{abcdefghijklmnopqrstuvwxyz}$
+
+\paragraph{mathit (italic)}
+
+$\mathit{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$\\
+$\mathit{abcdefghijklmnopqrstuvwxyz}$
+
+\paragraph{mathbf (bold, upright / non-slanted)}
+
+$\mathbf{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$\\
+$\mathbf{abcdefghijklmnopqrstuvwxyz}$
+
+\paragraph{mathtt (monospace)}
+
+$\mathtt{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$\\
+$\mathtt{abcdefghijklmnopqrstuvwxyz}$
+
+\paragraph{mathcal (calligraphic)}
+
+$\mathcal{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$\\
+%- no lowercase available -
+$\mathcal{abcdefghijklmnopqrstuvwxyz}$
+
+\paragraph{mathscr (script)}
+
+$\mathscr{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$\\
+$\mathscr{abcdefghijklmnopqrstuvwxyz}$
+
+\paragraph{mathfrak (Fraktur)}
+
+$\mathfrak{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$\\
+$\mathfrak{abcdefghijklmnopqrstuvwxyz}$
+
+\paragraph{mathbb (blackboard bold)}
+
+$\mathbb{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$\\
+$\mathbb{abcdefghijklmnopqrstuvwxyz}$
+
+\paragraph{Operators}
+
+$\log \sin \max \lim \liminf$
+
+\paragraph{Greek symbols}
+
+$\Alpha \Beta \Gamma \Delta \Epsilon \Zeta \Eta \Theta \Iota \Kappa \Lambda \Mu \Nu \Xi O \Pi \Rho \Sigma \Tau \Upsilon \Phi \Chi \Psi \Omega$\\
+$\alpha \beta \gamma \delta \epsilon \zeta \eta \theta \iota \kappa \lambda \mu \nu \xi o \pi \rho \sigma \tau \upsilon \phi \chi \psi \omega$
+
+%$\varDelta \varGamma \varLambda \varOmega \varPhi \varPi \varPsi \varSigma \varTheta \varUpsilon \varXi$
+
+% $\varepsilon \varphi \vartheta \varkappa  \varpi \varrho \varsigma$
+
+\paragraph{Bold Greek symbols (using mathbf)}
+
+$\mathbf{\Alpha \Beta \Gamma \Delta \Epsilon \Zeta \Eta \Theta \Iota \Kappa \Lambda \Mu \Nu \Xi O \Pi \Rho \Sigma \Tau \Upsilon \Phi \Chi \Psi \Omega}$\\
+$\mathbf{\alpha \beta \gamma \delta \epsilon \zeta \eta \theta \iota \kappa \lambda \mu \nu \xi o \pi \rho \sigma \tau \upsilon \phi \chi \psi \omega}$
+
+\paragraph{Bold Greek symbols (using bm)}
+
+$\bm{\Alpha \Beta \Gamma \Delta \Epsilon \Zeta \Eta \Theta \Iota \Kappa \Lambda \Mu \Nu \Xi O \Pi \Rho \Sigma \Tau \Upsilon \Phi \Chi \Psi \Omega}$\\
+$\bm{\alpha \beta \gamma \delta \epsilon \zeta \eta \theta \iota \kappa \lambda \mu \nu \xi o \pi \rho \sigma \tau \upsilon \phi \chi \psi \omega}$
+
+
+%\alpha A 	\alpha A 	\nu N 	\nu N
+%\beta B 	\beta B 	\xi\Xi 	\xi\Xi
+%\gamma \Gamma 	\gamma \Gamma 	o O\; 	o O
+%\delta \Delta 	\delta \Delta 	\pi \Pi 	\pi \Pi
+%\epsilon \varepsilon E\; 	\epsilon \varepsilon E 	\rho\varrho P\; 	\rho\varrho P
+%\zeta Z 	\zeta Z 	\sigma \,\! \Sigma\; 	\sigma \Sigma
+%\eta H 	\eta H 	\tau T 	\tau T
+%\theta \vartheta \Theta 	\theta \vartheta \Theta 	\upsilon \Upsilon 	\upsilon \Upsilon
+%\iota I 	\iota I 	\phi \varphi \Phi 	\phi \varphi \Phi
+%\kappa K 	\kappa K 	\chi X 	\chi X
+%\lambda \Lambda\; 	\lambda \Lambda 	\psi \Psi 	\psi \Psi
+%\mu M 	\mu M 	\omega \Omega 	\omega \Omega
+
+\end{document}

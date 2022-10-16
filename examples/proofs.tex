@@ -1,0 +1,31 @@
+\documentclass[class=scrartcl,crop=false]{standalone}
+
+\usepackage{../style/smproofs}
+
+\newtheorem{theorem}{Theorem}[section]
+
+\begin{document}
+
+\section{SMProofs}
+
+Long proofs that start in a new line.
+
+\begin{theorem}
+    $\mathsf{P} = \mathsf{NP}$.
+\end{theorem}
+
+\begin{proof}
+    Holds if $\mathsf{N} = 1$.
+\end{proof}
+
+Short proofs that don't.
+
+\begin{theorem}
+    $\mathsf{P} = \mathsf{NP}$.
+\end{theorem}
+
+\begin{shortproof}
+    Obvious.
+\end{shortproof}
+
+\end{document}

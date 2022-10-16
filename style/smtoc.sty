@@ -1,0 +1,66 @@
+%% ############################################################################
+%%
+%% Sebastian's table of contents
+%%
+%% ############################################################################
+%%
+%%
+%% ############################################################################
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{smtoc}[2020-08-09]
+
+
+%
+% TOC and hyperlinks
+%
+\PassOptionsToPackage{obeyspaces}{url}
+\RequirePackage[bookmarksnumbered,hyperfootnotes=false,pdfusetitle]{hyperref}
+
+% fix nesting in PDF TOC
+\RequirePackage[open=true]{bookmark}
+
+% don't show numbers in bold
+\newcommand{\partpagenumberformat}[1]{{\normalfont#1}}
+
+\RedeclareSectionCommand[%
+    tocpagenumberformat=\partpagenumberformat,
+    tocbeforeskip=1em,%    % decrease vertical space before toc entry
+]{part}
+
+% use this before "/printbibliography" to add the an entry for the bibliogrphy to the TOC
+%    \addcontentsline{toc}{part}{Bibliography}
+% Class option "toc=bib" also works, but creates the entry styled as a chapter
+
+% \ifcsundef{part}{%
+% }%
+% {%
+%     \setkomafont{partentry}{\normalfont}
+% }%
+
+
+%
+% Only for classes that support chapters
+%
+
+\ifcsundef{chapter}{%
+    % chapter is NOT defined
+}%
+{%
+    % chapter is defined
+
+    % no bold font for chapters
+    \setkomafont{chapterentry}{\normalfont}
+
+    % control whether there are dots between the chapter name and page number with the class option
+    % toc=chapterentrywithdots % dots in TOC between chapter name and page number
+
+    \RedeclareSectionCommand[%
+        tocbeforeskip=0em,%    % remove vertical space before entry
+        tocindent=2em,%        % indent toc entries (under the assumption that we have parts, which are not indented)
+        tocnumwidth=2em,%      % increase space for numbers
+    ]{chapter}%
+
+}%
+
+\endinput

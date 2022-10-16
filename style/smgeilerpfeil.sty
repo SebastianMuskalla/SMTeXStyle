@@ -1,0 +1,195 @@
+%% ############################################################################
+%%
+%% Sebastian's geiler Pfeil
+%%
+%% ############################################################################
+%%
+%% Notation for Petri net transitions
+%%
+%% ############################################################################
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{smgeilerpfeil}[2020-08-09]
+
+
+\RequirePackage{amsmath}
+
+\RequirePackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{fit}
+
+\RequirePackage{pgf}
+
+\RequirePackage{calc}
+
+
+% commands for a prime symbol (') that is not as high as the normal one, in order to serve vertical space
+% important: use e.g. t\lowprime, not t^\lowprime
+\newcommand{\lowprime}{\raise0.6ex\hbox{$\scriptstyle\prime$}}
+\newcommand{\lowerprime}{\raise0.5ex\hbox{$\scriptstyle\prime$}}
+\newcommand{\lowestprime}{\raise0.4ex\hbox{$\scriptstyle\prime$}}
+
+
+% will be used to store the measured height of the label
+\newlength{\firearrowlabelheight}
+
+% total height of the arrow
+\newlength{\firearrowheight}
+\setlength{\firearrowheight}{0.7\baselineskip}
+
+% horizontal spacing between the corners of the arrow and the label
+\newlength{\firearrowleftrightspace}
+\setlength{\firearrowleftrightspace}{0.3em}
+
+% horizontal spacing between the right corners of the arrow and the tip
+\newlength{\firearrowtipdistance}
+\setlength{\firearrowtipdistance}{0.7em}
+
+% draws a firing arrow with the specified label
+% see doc of \fireArrow
+\newcommand{\fire}[1]{\mathrel{\fireArrow{#1}}}
+
+%%
+% draws an arrow with the specified label, i.e.
+%     [param>
+%
+% the label is scaled so that it fits the arrow
+%
+% to get consistent label heights, you may use \strut or \mathstrut inside your label
+%
+% use the global lengths
+%     \firearrowlabelheight
+%     \firearrowleftrightspace
+%     \firearrowtipdistance
+% to influence the shape of the arrow
+%
+% the global length
+%     \firearrowlabelheight
+% is used to store the measured height of the label
+%
+\newcommand{\fireArrow}[1]%
+{%
+    % measure the height of the label
+    \settototalheight{\firearrowlabelheight}{\hbox{${#1}$}}%
+    \begin{tikzpicture}
+        [
+            baseline = -\firearrowheight+0.15em,%
+            semithick%
+        ]
+
+        % draw the label, scaled so that it fits the arrow height
+        \node
+            (transition)
+            at (\firearrowleftrightspace,-0.5\firearrowheight)
+            [
+                anchor=west,
+                inner sep=0,
+                outer sep=0,
+                scale = {min(0.75\firearrowheight/\firearrowlabelheight,0.75)} % avoid that small contents get scaled up
+            ]
+            {${#1}$};
+
+        % draw box around transition for the purpos of testing
+        % \node[draw=red,fit=(transition),inner sep=0pt,outer sep=0pt] (box) {};
+
+        % north east / upper right corner of the arrow
+        % length of the position of the label + the spacing set in firearrowleftrightspace
+        \path
+            let \p{ne} = (transition.north east) in
+            coordinate (ne) at (\x{ne}+\firearrowleftrightspace,0);
+
+        % south east / lower right corner of the arrow
+        % length of the position of the label + the spacing set in firearrowleftrightspace
+        \path
+            let \p{se} = (transition.south east) in
+            coordinate (se) at (\x{se}+\firearrowleftrightspace,-\firearrowheight);
+
+
+        % tip of the arrow
+        % height: in the middle of the arrow
+        % width: x-coord of the right corners + the spacing set in firearrowtipdistance
+        \path
+            let
+                \p{se} = (se),
+                \p{ne} = (ne)
+            in
+            coordinate
+                (tip)
+                at (\x{se}+\firearrowtipdistance, {-\firearrowheight/2});
+        \path [draw,line cap=rect]
+            (0,0)                    % upper left
+            -- (ne)                  % upper right
+            -- (tip)                 % middle right
+            -- (se)                  % lower right
+            -- (0,-\firearrowheight) % lower left
+            -- (0,0)                 % upper left
+        ;
+    \end{tikzpicture}%
+}%
+
+
+% variant of fire that consumes more vertical space, only use in displaymode
+\newcommand{\displayfire}[1]{\mathrel{\displayfireArrow{#1}}}
+\newlength{\displayfirearrowheight}
+\setlength{\displayfirearrowheight}{1\baselineskip}
+\newcommand{\displayfireArrow}[1]%
+{%
+    % measure the height of the label
+    \settototalheight{\firearrowlabelheight}{\hbox{${#1}$}}%
+    \begin{tikzpicture}
+        [
+            baseline = -\displayfirearrowheight+0.15em,%
+            semithick%
+        ]
+
+        % draw the label, scaled so that it fits the arrow height
+        \node
+            (transition)
+            at (\firearrowleftrightspace,-0.5\displayfirearrowheight)
+            [
+                anchor=west,
+                inner sep=0,
+                outer sep=0,
+                scale = {min(0.9\displayfirearrowheight/\firearrowlabelheight,0.9)} % avoid that small contents get scaled up
+            ]
+            {${#1}$};
+
+        % draw box around transition for the purpos of testing
+        % \node[draw=red,fit=(transition),inner sep=0pt,outer sep=0pt] (box) {};
+
+        % north east / upper right corner of the arrow
+        % length of the position of the label + the spacing set in firearrowleftrightspace
+        \path
+            let \p{ne} = (transition.north east) in
+            coordinate (ne) at (\x{ne}+\firearrowleftrightspace,0);
+
+        % south east / lower right corner of the arrow
+        % length of the position of the label + the spacing set in firearrowleftrightspace
+        \path
+            let \p{se} = (transition.south east) in
+            coordinate (se) at (\x{se}+\firearrowleftrightspace,-\displayfirearrowheight);
+
+
+        % tip of the arrow
+        % height: in the middle of the arrow
+        % width: x-coord of the right corners + the spacing set in firearrowtipdistance
+        \path
+            let
+                \p{se} = (se),
+                \p{ne} = (ne)
+            in
+            coordinate
+                (tip)
+                at (\x{se}+\firearrowtipdistance, {-\displayfirearrowheight/2});
+        \path [draw,line cap=rect]
+            (0,0)                    % upper left
+            -- (ne)                  % upper right
+            -- (tip)                 % middle right
+            -- (se)                  % lower right
+            -- (0,-\displayfirearrowheight) % lower left
+            -- (0,0)                 % upper left
+        ;
+    \end{tikzpicture}%
+}%
+
+\endinput

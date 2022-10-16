@@ -1,0 +1,186 @@
+\documentclass
+[
+    folder=../style,
+    25pt,
+    a1paper,
+    portrait,
+    margin=0mm,
+    innermargin=15mm,
+    blockverticalspace=15mm,
+    colspace=15mm,
+    subcolspace=8mm,
+]
+{../style/smposter}
+
+\usepackage{../themes/poster/metropolis}
+
+
+\tikzposterlatexaffectionproofoff
+
+\title{SMPoster}
+\author{Sebastian Muskalla}
+
+% fix title height for titles containing q,y,g ...
+%     (upper-case letters should be centered vertically)
+\newcommand{\fixtitleheight}{\vspace*{-0.2cm}}
+
+\begin{document}
+
+\maketitle
+
+\begin{columns}
+
+\column{.698}
+
+\useblockstyle{metropolis-notitle}
+
+\block[]{}%{\ Publication}c
+{
+    \textbf{The publication title} \ (\texttt{arXiv:abcd.efghi})
+
+    together with the other authors
+
+    In \textit{PROCEEDINGS}, volume xyz of LIPIcs, pages ab:1--cd:18, Schloss Dagstuhl, 202X.
+}
+
+\useblockstyle{metropolis}
+
+\end{columns}
+
+\begin{columns}
+
+\column{.5}
+
+\block[]{\ Well-structured transition systems~{\fontsize{34}{34}\selectfont[FS01]}\fixtitleheight}
+{
+    Labeled WSTS %[F87,ACJT96,FS01]
+    \(
+        \calW = (S, \leq, T, I, F)
+    \)
+    over $\Sigma$ with
+
+    % \vspace*{0.15cm}
+
+    \quad $(S,\leq)$ well-quasi ordered states,
+
+    \quad  $T \subseteq S \times \Sigma \times S$ transitions, (strongly) compatible with $\leq$,
+
+    \quad  $\mspace{1.5mu}I\mspace{3mu} \subseteq S$ initial states,
+
+    \quad  $F \subseteq S$ final states, upward closed.
+
+    \vspace*{0.5cm}
+
+    \textbf{Coverability language:}
+
+    \vspace*{0.45cm}
+
+    \quad \(
+    \lang{\calW} = \Set{ w \in \Sigma^* }
+        { s_I \tow{w} s_F  \text{ for some } s_I \in I, s_F \in F}
+    \)
+
+    \vspace*{0.5cm}
+
+    \textbf{Examples:}
+    Petri nets and extensions (transfer nets, reset nets,~...) with covering a marking as acceptance condition.
+
+}
+
+\block[]{\ Finite branching\fixtitleheight}
+{
+    $\calW$ finitely branching if $I$ and $\text{Post}_\Sigma(s)$ finite for all $s \in S$.
+
+    $\calW$ deterministic if $I$ and $\text{Post}_a(s)$ unique for all $s \in S,a \in \Sigma$.
+
+    $\calW$ $\omega^2$-WSTS if $(S,\leq)$ does not embed the Rado order.
+
+
+    \vspace*{0.5cm}
+
+    \textbf{Theorem:}
+    \textit{The following inclusions of language classes hold:}
+%
+    \begin{align*}
+        \text{lang. of } \omega^2\text{-WSTS} &\subseteq \text{lang. of deterministic WSTS},
+        \\
+        \text{\text{lang. of} fin.-branching WSTS} &\subseteq \text{lang. of deterministic WSTS}.
+    \end{align*}
+
+    \vspace*{-0.7cm}
+}
+
+
+\column{.5}
+
+\block[]{\ \textcolor{tubsred}{The result \& its consequences}\fixtitleheight}
+{
+    \textcolor{tubsred}{\textbf{Theorem:}}
+    \textit{If two WSTS languages, one of them finitely branching, are disjoint, then they are regularly separable.}
+% }
+% \block[]{\ The consequences}
+% {
+    \vspace*{0.5cm}
+
+    \textbf{Corollary:}%
+    \textit{ If a language and its complement are languages of finitely-branching WSTS, then they are necessarily regular.}
+
+    % (Generalizes earlier results for PNCOV~[MKR98a,MKR98b])
+
+
+    \vspace*{0.5cm}
+
+
+    \textbf{Corollary:}%
+    \:\textit{No subclass of the class of languages of finitely-branching WSTS beyond {\normalfont REG} is closed under complement.}
+}
+
+\useblockstyle{invisible}
+
+\block[]{}
+{
+    \vspace*{-0.12cm}
+    \textbf{Proof approach:}
+    \begin{enumerate}
+        \item Show that finitely-represented inductive \textbf{invariants}\\
+            can be turned into regular separators.
+            \vspace*{-0.2cm}
+        \item Show that such invariants always exist using \textbf{ideals}.
+    \end{enumerate}
+    \vspace*{-0.31cm}
+};
+
+\useblockstyle{metropolis}
+
+% \node [text width=0.4\textwidth,mBlack,anchor=north west] at (2,10)
+% {
+%     \textbf{Proof approach:}
+%     \begin{enumerate}
+%         \item Show that finitely-represented inductive invariants can be turned into regular separators.
+%         \item Show that such invariants always exist.
+%     \end{enumerate}
+% };
+
+\block[]{\ Ideals {\fontsize{34}{34}\selectfont[KP92]\,[FG12,\,BFM14]}}
+{
+    Let $\widehat{\calW}$ be the ideal completion of $\calW$.
+    Note: $\lang{\calW} = \lang{\widehat{\calW}}$.
+
+    \vspace*{0.5cm}
+
+    \textbf{Proposition:}%
+    \textit{ If $X$ is an invariant for $\calW$,
+    then its {ideal decomposition} $\text{\normalfont I{\small D}-D{\small EC}}\left(X\right)\!\down$
+    is a finitely-represented invariant for~$\widehat{\calW}$.}
+}
+
+
+
+
+\end{columns}
+
+\end{document}
+
+\end{document}
+
+\endinput

@@ -1,0 +1,39 @@
+%% ############################################################################
+%%
+%% Sebastian's emphasizing
+%%
+%% ############################################################################
+%%
+%% Normal:
+%%    \emph -> italic
+%%    \aemph -> bold
+%%
+%% With option [bold]
+%%    \emph -> bold
+%%    \aemph -> italic
+%%
+%% ############################################################################
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{smemph}[2020-08-09]
+
+
+\newcommand{\aemph}[1]{\textbf{#1}}
+
+% \DeclareRobustCommand{\em}{%
+%     \@nomath\em \if b\expandafter\@car\f@series\@nil
+%     \normalfont \else \bfseries \fi}
+
+\DeclareOption{bold}%
+{%
+    \DeclareRobustCommand{\em}{%
+        \@nomath\em\if b\expandafter\@car\f@series\@nil%
+        \normalfont\else\bfseries\fi%
+    }%
+    \renewcommand{\aemph}[1]{\textit{#1}}%
+}%
+
+\ProcessOptions\relax
+
+
+\endinput

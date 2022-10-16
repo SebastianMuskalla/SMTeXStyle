@@ -1,0 +1,51 @@
+\documentclass
+[
+    folder=../style,
+    a4paper,
+    12pt,
+    parskip=half-,
+    numbers=enddot,
+    fleqn,
+]{../style/smexsheet}
+
+\title{SMExsheet}
+\subtitle{Exercise sheet XX}
+\author{Sebastian Muskalla}
+
+\lecturer{Lecturer name}
+\organizer{Organizer name}
+\institution{TU Braunschweig}
+\term{Winter term 2017/18}
+\releasedate{Out: January 17}
+\duedate{Due: January 23}
+
+\begin{document}
+
+\maketitle
+
+\begin{center}
+    Submit your solutions until \emph{Tuesday, January 23}, during the lecture.
+\end{center}
+
+
+\begin{exercise}[Exercise name]
+	Consider two traces $\tau = \alpha.a.b.\gamma$ and $\tau' = \alpha'.a.\beta.b.\gamma'$
+	where $\text{thread}(c) \neq \text{thread}(a)$
+	and $\text{thread}(c) \neq \text{thread}(b)$ for all $c$ in $\beta$.
+	Prove the following:
+	%
+	\begin{center}
+		If $a\rightarrow_{\text{hb}} b$ in $\text{TraceTSO}(\tau)$ then  $a\rightarrow_{\text{hb}}^+ b$ in $\text{TraceTSO}(\tau')$.
+	\end{center}
+\end{exercise}
+
+\begin{exercise*}[Exercise without number]
+	Do something stupid!
+\end{exercise*}
+
+\begin{exercise}[Exercise with number]
+	Do something clever?
+\end{exercise}
+
+
+\end{document}

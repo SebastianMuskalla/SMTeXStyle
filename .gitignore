@@ -1,0 +1,8 @@
+*.code-workspace
+.vscode
+
+.out
+
+# exclude all pdfs but those in examples
+*.pdf
+!/examples/*.pdf

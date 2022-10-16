@@ -1,0 +1,129 @@
+\documentclass
+[
+    lang=de,
+    folder=../style,
+    a4paper,
+    12pt,
+    parskip=half-,
+    numbers=enddot,
+    fleqn,
+]{../style/smexam}
+
+\title{SMExam}
+\subtitle{Vorlesung}
+\author{Sebastian Muskalla}
+
+\date{28. Juli 2020}
+\examiner{Prof. Dr. Dozent}
+\organizer{Mitarbeiter, M.Sc.}
+\institution{Universität}
+\term{Sommersemester 202X}
+
+\numpages{4}
+
+\begin{document}
+
+    \begin{exam}
+
+    %
+    % Title box
+    %
+
+    \maketitle
+
+    %
+    % Instructions
+    %
+
+    {\small
+    \begin{enumerate}
+        \item \textbf{Bitte am Anfang ausfüllen:}
+    %    \bigskip
+        \begin{description}
+            \item Vorname:
+                \vspace*{0.3cm}
+            \item Nachname:
+                \vspace*{0.3cm}
+            \item Matrikelnummer:
+                \vspace*{0.3cm}
+            \item Unterschrift:
+                \vspace*{0.3cm}
+        \end{description}
+        \item
+            Die Nummer Ihrer Klausur ist
+            \quad
+            \monobf{\# \currentnumber}\ .
+            \quad
+            Bitte merken Sie sich die Nummer.
+            Wir werden Ihr Klausurergebnis anonymisiert unter Verwendung dieser Nummer bekanntgeben.
+        \item
+    %        Achten Sie darauf, dass Ihre Klausur vollständig ist und getackert bleibt~(\pageref{LastPage} Blätter)!
+            Achten Sie darauf, dass Ihre Klausur \textbf{vollständig ist} und \textbf{getackert bleibt}~(23~Blätter).
+        \item
+            Benutzen Sie \textbf{nur das an dieses Blatt angeheftete Papier}.
+            Bei Bedarf können wir weitere Leerblätter austeilen.
+            Wenn der Platz auf der Vorderseite des jeweiligen Aufgabenblatts nicht ausreicht, \textbf{machen Sie kenntlich}, wo Sie die Bearbeitung der Aufgabe fortsetzen.
+        \item
+            Als Hilfsmittel sind \textbf{ausschließlich} Sprachwörterbücher sowie ein beidseitig \textbf{handschriftlich beschriebenes DIN A4-Blatt} erlaubt.
+            Elektronische Geräte müssen während der Klausur ausgeschaltet bleiben.
+            Täuschungsversuche werden als nicht bestanden gewertet und dem Prüfungsamt gemeldet.
+        \item
+            Schreiben Sie leserlich und bearbeiten Sie Ihre Klausur mit einem \textbf{dokumentenechten Stift} (nicht mit Bleistift, kein Tipp-Ex, kein Tintenkiller) und \textbf{nicht in roter oder grüner Farbe}.
+        % \item
+        %     Wir werden das Deckblatt während der Klausur auf korrekte Daten überprüfen. Legen Sie dazu Ihren \textbf{Studierendenausweis} und einen amtlichen Lichtbildausweis bereit.
+        \item
+            Wir werden die \textbf{Klausurergebnisse} auf unserer Website bekanntgeben:\\
+            \mono{tcs.cs.tu-bs.de/teaching/TheoInf2Klausur\_WS\_20192020}\ .
+        % \item
+        %     Wir werden den Termin für die \textbf{Klausureinsicht} auf unserer Website bekanntgeben:\\
+        %     \mono{tcs.cs.tu-bs.de/teaching/TheoInf2Klausur\_WS\_20192020}\ .
+        \item
+            Die \textbf{Bearbeitungszeit} beträgt \textbf{180 Minuten} (+ ggf. Zeit zum Lüften).
+        \item
+            Mit \textbf{40 Punkten} ist die Klausur \textbf{sicher bestanden.}
+    \end{enumerate}
+    }
+
+    %
+    % Grading
+    %
+
+
+    \begin{center}
+        {\large{\textbf{Bepunktung:}}} (wird von den Korrektoren ausgefüllt)
+
+        % \vspace*{-2mm}
+
+        \begin{tabular}{|p{2cm}||c|c|c|c|c|c|c|c|c|c||c|}
+            \hline
+            \textbf{Aufgabe} & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & $\Sigma$ \\
+            \hline
+            \textbf{Max.}   & 10 & 10 & 10 & 10 & 10 & 10  & 10 & 10 & 10 & 10 & \textbf{100}\\
+            \hline
+            \textbf{Punkte} \newline \mbox{}& & & & & & & & & & & \\
+            \hline
+        \end{tabular}
+    \end{center}
+
+
+    \newpage
+
+    \begin{exercise}{Aufgabe}[5 + 5 = 10]
+        Beweisen Sie: $\NPTIME = \PTIME$.
+
+        Außerdem: Toastbrot!
+    \end{exercise}
+
+    \newpage
+
+    \begin{exercise}{Aufgabe ohne Punkte}
+        Beweisen Sie: $\NPTIME = \PTIME$.
+
+        Außerdem: Toastbrot!
+    \end{exercise}
+
+    \additionalpages{1}
+
+    \end{exam}
+
+\end{document}

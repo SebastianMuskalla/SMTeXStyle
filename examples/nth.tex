@@ -1,0 +1,36 @@
+\documentclass[class=scrartcl,crop=false]{standalone}
+
+\usepackage{../style/smnth}
+
+\begin{document}
+
+\section{SMNth}
+
+\nth{1} \nth{2} \nth{3} \nth{4} \nth{5} \nth{6} \nth{7} \nth{8} \nth{9} \nth{10}
+
+Works in math mode: \( \nth{1} \) -- and in text mode: \nth{1}
+
+Works for large numbers:
+\[
+    \nth{1001}
+\]
+
+Works for negative numbers:
+\[
+    \nth{-1}  \nth{-2}  \nth{-3}
+\]
+
+Wrong automatic detection for some expressions:
+\[
+\nth{(n+1)}
+\]
+
+Can be fixed using an optional argument
+\[
+\nth{(n+1)}{st}
+\]
+\[
+\nth{1001}{und eine Nacht}
+\]
+
+\end{document}

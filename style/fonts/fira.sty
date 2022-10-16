@@ -1,0 +1,35 @@
+%% ############################################################################
+%%
+%% Fira
+%%
+%% ############################################################################
+%%
+%% Use Fira Math for math and
+%% FiraGO for text
+%%
+%% ############################################################################
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{fira}[2020-08-09]
+
+
+% load amsmath now because otherwise there are problems
+% do not load it if it is already loaded, because that somehow leads to problems
+\@ifpackageloaded{amsmath}{}{\RequirePackage{amsmath}}
+
+\RequirePackage{unicode-math}
+\unimathsetup{math-style=ISO, bold-style=ISO, mathrm=sym}
+
+\setsansfont{FiraGO}[BoldFont= FiraGO SemiBold]
+\renewcommand{\familydefault}{\sfdefault}
+
+\setmathfont{Fira Math}
+
+\setmonofont{Fira Code}
+\setmathtt{Fira Code}
+
+\newcommand{\restriction}{\upharpoonright}
+\newcommand{\largeblacksquare}{\mdlgblksquare}
+\newcommand{\shortmid}{\mid}
+
+\endinput

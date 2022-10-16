@@ -1,0 +1,130 @@
+%% ############################################################################
+%%
+%% Sebastian's problem boxes
+%%
+%% ############################################################################
+%%
+%% Boxes for computational problems
+%%
+%% You can use option [sansserif] to enforce sans-serif font within problem boxes,
+%%    even if the rest of the document is set in a serif font
+%%
+%% Usage:
+%%
+%%     \begin{problem} % or compproblem or decproblem
+%%         \problemtitle{Some problem title}
+%%         \problemshort{(SHORTHAND)}
+%%         \probleminput{The input to the problem.}
+%%         \problemquestion{The question of the problem?}
+%%     \end{problem}
+%%
+%% ############################################################################
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{smproblemboxes}[2020-08-09]
+
+
+%
+% Dependencies
+%
+
+\RequirePackage{environ}
+\RequirePackage{tabularx}
+
+%
+% Option processing
+%
+
+\newcommand{\problemboxfont}{\normalfont}
+\DeclareOption{sansserif}{\renewcommand{\problemboxfont}{\sffamily}}
+\ProcessOptions\relax
+
+%
+% Parametric text (can be localized by redefining the command)
+%
+
+\providecommand{\ProblemboxesLocaleInput}{Given}
+\providecommand{\ProblemboxesLocaleQuestion}{Question}
+\providecommand{\ProblemboxesLocaleDecide}{Decide}
+\providecommand{\ProblemboxesLocaleCompute}{Compute}
+
+%
+% Commands
+%
+
+% store problem title
+\newcommand{\problemtitle} [1]
+{\gdef\@problemtitle{#1}}
+
+% store problem shorthand
+\newcommand{\problemshort} [1]
+{\gdef\@problemshort{#1}}
+
+% store problem input
+\newcommand{\probleminput} [1]
+{\gdef\@probleminput{#1}}
+
+% store problem question
+\newcommand{\problemquestion} [1]
+{\gdef\@problemquestion{#1}}
+
+% define \ProvideEnviron (similar to providecommand)
+\def\ProvideEnviron{\@star@or@long\Provide@Environ}%
+\def\Provide@Environ#1{%
+        \@ifundefined{#1}%
+                {\def\reserved@a{\NewEnviron{#1}}}%
+                {\def\reserved@a{\RenewEnviron{ProblemboxesDummyEnviron}}}%
+        \reserved@a%
+}%
+\def\ProblemboxesDummyEnviron{}
+
+%
+% Implementation
+%
+
+% body of the environment with parametric text
+\newcommand{\ProblemBoxesParametricBody}[2]
+{%
+    % Default input is empty
+    \problemtitle{}%
+    \problemshort{}%
+    \probleminput{}%
+    \problemquestion{}%
+    % parse input
+    \BODY%
+    % real body
+    \problemboxfont%
+    \par\addvspace{.5\baselineskip}%
+    \noindent%
+    \framebox[1\columnwidth]{%
+        \hspace*{1em}%
+        \begin{tabularx}{\columnwidth-1em}{@{\hspace{0.5\parindent}} l X}%
+            % title and shortcut
+            \multicolumn{2}{@{\hspace{0.5\parindent}}l}{\normalsize\textbf{\underline{\@problemtitle}}\ \@problemshort}%
+            \\%
+            % input
+            \normalsize \textbf{#1} & \normalsize \@probleminput%
+            \\%
+            % question
+            \normalsize \textbf{#2} & \normalsize \@problemquestion%
+        \end{tabularx}%
+    }
+    \par\addvspace{.5\baselineskip}%
+}%
+
+%
+% Define environments
+%
+
+\ProvideEnviron{problem}{}
+\ProvideEnviron{decproblem}{}
+\ProvideEnviron{compproblem}{}
+
+\RenewEnviron{problem}{\ProblemBoxesParametricBody{\ProblemboxesLocaleInput:}{\ProblemboxesLocaleQuestion:}}
+
+\RenewEnviron{decproblem}{\ProblemBoxesParametricBody{\ProblemboxesLocaleInput:}{\ProblemboxesLocaleDecide:}}
+
+\RenewEnviron{compproblem}{\ProblemBoxesParametricBody{\ProblemboxesLocaleInput:}{\ProblemboxesLocaleCompute:}}
+
+
+\endinput

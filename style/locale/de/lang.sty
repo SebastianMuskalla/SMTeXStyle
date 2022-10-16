@@ -1,0 +1,71 @@
+%% ############################################################################
+%%
+%% language dependent stuff: German
+%%
+%% ############################################################################
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{lang}[2020-08-09]
+
+
+%
+% Packages
+%
+
+\RequirePackage{ifxetex}
+
+\ifxetex%
+    % XeLaTeX - no need for fontenc & inputenc. Use polyglossia instead of babel
+    \RequirePackage{polyglossia}
+    \setmainlanguage{german}
+\else%
+    % no XeLaTeX - use fontenc, inputenc, and babel
+    \RequirePackage[T1]{fontenc}
+    \RequirePackage[utf8]{inputenc}
+    \RequirePackage[american]{babel}
+\fi%
+
+%
+% Quotes
+%
+
+\ifxetex%
+    \newcommand*\glqq{„}%
+    \newcommand*\grqq{“}%
+\fi%
+
+\RequirePackage{csquotes}
+
+\newcommand{\quot}[1]{\enquote{#1}}
+
+%
+% Commands
+%
+
+% localization for theorem name
+\providecommand{\TheoremLocaleName}{}
+% \renewcommand{\TheoremLocaleName}{Satz}
+\renewcommand{\TheoremLocaleName}{Theorem}
+
+% localization for exams
+\providecommand{\ExamLocaleExam}{}
+\providecommand{\ExamLocalePage}{}
+\providecommand{\ExamLocalePoints}{}
+\providecommand{\ExamLocaleAdditionalSheet}{}
+\renewcommand{\ExamLocaleExam}{Klausur}
+\renewcommand{\ExamLocalePage}{Seite}
+\renewcommand{\ExamLocalePoints}{Punkte}
+\renewcommand{\ExamLocaleAdditionalSheet}{Zusatzblatt}
+
+% localization for package ``problemboxes''
+\providecommand{\ProblemboxesLocaleInput}{}
+\providecommand{\ProblemboxesLocaleQuestion}{}
+\providecommand{\ProblemboxesLocaleDecide}{}
+\providecommand{\ProblemboxesLocaleCompute}{}
+\renewcommand{\ProblemboxesLocaleInput}{Gegeben}
+\renewcommand{\ProblemboxesLocaleQuestion}{Frage}
+\renewcommand{\ProblemboxesLocaleDecide}{Entscheide}
+\renewcommand{\ProblemboxesLocaleCompute}{Berechne}
+
+
+\endinput

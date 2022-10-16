@@ -1,0 +1,144 @@
+%% ############################################################################
+%%
+%% Myriad
+%%
+%% ############################################################################
+%%
+%% Use Myriad Pro for math and text
+%%
+%% ############################################################################
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{myriad}[2020-08-09]
+
+% Requirements
+% * Have Myriad Pro (including Semibold style; proprietary) and JetBrains Mono (https://www.jetbrains.com/lp/mono/) installed
+% * Compile using xelatex
+
+% Recommended setup:
+% * Use FontPro (https://github.com/sebschub/FontPro) to build and install the MyriadPro package
+
+% Discouraged fallback setup:
+% * use mathspec to set fonts
+% * Problem: Kerning / glyph bounds fail, e.g. f(x) and f^i are not rendered correctly
+
+
+% package for checking whether XeLaTeX is used to compile the document
+\RequirePackage{iftex}
+\RequireXeTeX%
+
+\IfFileExists{MyriadPro.sty}%
+{%
+    % Myriad Pro package exists
+
+    % Load font styles for math that are not included in Myriad Pro
+    % * Calligraphic: Computer Modern (simply the best...)
+    % * Fraktur: Boondox (which is based on STIX)
+    % * Script: Boondox
+    \RequirePackage%
+    [
+        %cal=cm, % loaded by MyriadPro
+        %bb=boondox, %incompatible with MyriadPro package
+        frak=boondox,
+        scr=boondoxo
+    ]
+    {mathalpha}
+
+    \RequirePackage%
+    [
+        math,                % set Myriad Pro as math font
+        medfamily,           % use semibold instead of bold
+        italicgreek,         % make all greek letters italic (even the capitals)
+        mathtabular, mathlf, % use monospaced non-lowercase numbers in math mode
+        fourierbb,           % use Fourier blackboard bold (which looks like Boondox)
+        cmsy,                % use Computer Modern calligraphic letters
+    ]{MyriadPro}
+
+    \RequirePackage[no-math]{fontspec}
+
+    \setmainfont{Myriad Pro}
+    [ BoldFont=Myriad Pro Semibold ]
+    \setsansfont{Myriad Pro}
+    [ BoldFont=Myriad Pro Semibold ]
+
+    \setmonofont{Source Code Pro Medium}
+
+}%
+{%
+
+    % Myriad Pro package does not exist
+
+    \PackageWarningNoLine{myriad}{The MyriadPro package could not be loaded!}
+    \PackageWarningNoLine{myriad}{Building and installing the package using FontPro (https://github.com/sebschub/FontPro) is recommended.}
+    \PackageWarningNoLine{myriad}{Using mathspec as a fallback option, but this will lead to suboptimal typesetting in math mode.}
+
+    % load amsmath now because otherwise there are problems
+    \@ifpackageloaded{amsmath}{}{\RequirePackage{amsmath}}
+
+    % MdSymbol for math symbols that work well together with Myriad Pro
+    \RequirePackage{mdsymbol}
+
+    % Mathspec to change fonts for math and text
+    % (loads fontspecc with no-math option)
+    \RequirePackage{mathspec}
+
+    % set text fonts using mathspec
+    \setmainfont{Myriad Pro}
+    [ BoldFont=Myriad Pro Semibold ]
+    \setsansfont{Myriad Pro}
+    [ BoldFont=Myriad Pro Semibold ]
+
+    \setmonofont{Source Code Pro Medium}
+
+    % set math fonts using mathspec
+    \setmathsfont(Digits,Latin,Greek){Myriad Pro}
+    \setmathrm{Myriad Pro}
+    \setmathsf{Myriad Pro}
+
+    \setmathtt{Source Code Pro Medium}
+
+    % forgotten symbols in mathspec
+    % https://tex.stackexchange.com/questions/38711/punctuation-marks-in-math-mode-in-xetex-mathspec
+    % https://tex.stackexchange.com/questions/74140/xetex-mathspec-punctuation-issue
+    \renewcommand\eu@MathPunctuation@symfont{Latin:m:n}
+    \DeclareMathSymbol{,}{\mathpunct}{\eu@MathPunctuation@symfont}{`,}
+    \DeclareMathSymbol{.}{\mathord}{\eu@MathPunctuation@symfont}{`.}
+    \DeclareMathSymbol{<}{\mathrel}{\eu@MathPunctuation@symfont}{`<}
+    \DeclareMathSymbol{>}{\mathrel}{\eu@MathPunctuation@symfont}{`>}
+    \DeclareMathSymbol{/}{\mathord}{\eu@MathPunctuation@symfont}{`/}
+    \DeclareMathSymbol{;}{\mathpunct}{\eu@MathPunctuation@symfont}{`;}
+    \DeclareMathSymbol{?}{\mathpunct}{\eu@MathPunctuation@symfont}{`?}
+    \XeTeXDeclareMathSymbol{^^^^2026}{\mathinner}{\eu@MathPunctuation@symfont}{"2026}[\mathellipsis]
+
+    % try to get glyph bounds (... but they still suck)
+    \setminwhitespace[1000]
+
+    % Load font styles for math that are not included in Myriad Pro
+    % * Blackboard bold: Boondox (which is based on STIX)
+    % * Calligraphic: Computer Modern (simply the best...)
+    % * Fraktur: Boondox (which is based on STIX)
+    % * Script: Boondox
+    \RequirePackage%
+    [
+        cal=cm,
+        bb=boondox,
+        frak=boondox,
+        scr=boondoxo
+    ]
+    {mathalpha}
+
+}%
+
+
+% use script l for \ell
+\let\oldell\ell%
+\renewcommand{\ell}{\mathscr{l}}
+
+% % the greek symbols provided by Myriad Pro already look like their standard-LaTeX var-variants
+% \let\oldvarepsilon\varepsilon
+% \let\oldvarphi\varphi
+% \let\varepsilon\epsilon
+% \let\varphi\phi
+
+
+\endinput

@@ -1,0 +1,422 @@
+%% ############################################################################
+%%
+%% Sebastian's math
+%%
+%% ############################################################################
+%%
+%% A lot of math mode definitions
+%%
+%% ############################################################################
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{smmath}[2020-08-09]
+
+
+%
+% includes
+%
+
+\RequirePackage{xparse}
+
+\RequirePackage{graphicx}
+
+\RequirePackage{stmaryrd}
+
+\RequirePackage{scalerel}
+
+\RequirePackage{amsmath}
+
+% mdsymbol / MyriadPro are incompatible with amssymb
+\@ifpackageloaded{mdsymbol}{}{\RequirePackage{amssymb}}
+
+%
+% fix delimiter spacing
+%
+
+\let\originalleft\left%
+\let\originalright\right%
+\renewcommand{\left}{\mathopen{}\mathclose\bgroup\originalleft}
+\renewcommand{\right}{\aftergroup\egroup\originalright}
+
+%
+% versions of left and right that are ignored in inline math
+%
+
+% https://tex.stackexchange.com/questions/463421/variant-of-left-right-that-gets-ignored-in-inlinemath
+
+\RequirePackage{amsmath}
+
+\newcommand{\lft}{\if@display\expandafter\left\fi}
+\newcommand{\rgt}{\if@display\expandafter\right\fi}
+\newcommand{\mdl}{\if@display\expandafter\middle\fi}
+
+%
+% delimiters
+%
+
+% non-semantical versions
+\newcommand{\paren}[1]{\lft(#1\rgt)}
+
+\newcommand{\bracketed}[1]{\lft[#1\rgt]}
+
+\newcommand{\braced}[1]{\lft\{#1\rgt\}}
+
+\newcommand{\piped}[1]{\lft\lvert#1\rgt\rvert}
+
+\newcommand{\ceil}[1]{\lft\lceil#1\rgt\rceil}
+
+\newcommand{\floor}[1]{\lft\lfloor#1\rgt\rfloor}
+
+\newcommand{\doublebracketed}[1]{\lft\llbracket#1\rgt\rrbracket}
+
+\newcommand{\angled}[1]{\lft\langle#1\rgt\rangle}
+
+% semantical versions
+\let\set\braced%
+\let\card\piped%
+\let\sem\doublebracketed%
+
+\newcommand{\Set} [2] {\set{#1 \ \mdl|\ #2}}
+
+
+\newcommand{\fromto} [2] {\set{ #1, \ldots, #2}}
+
+\newcommand{\oneto} [1] {\fromto{1}{#1}}
+
+\newcommand{\zeroto} [1] {\fromto{0}{#1}}
+
+%
+% Basic stuff
+%
+
+\newcommand{\from} {\leftarrow}
+
+\newcommand{\true} {\text{true}}
+
+\newcommand{\false} {\text{false}}
+
+\newcommand{\monotrue} {\mathtt{true}}
+
+\newcommand{\monofalse} {\mathtt{false}}
+
+\newcommand{\ifalse} {\mathit{false}}
+
+\newcommand{\itrue} {\mathit{true}}
+
+\newcommand{\arity} [1] {{\scriptstyle/ #1 }}
+
+\newcommand{\powerset} [1] {\mathcal{P}\paren{#1}}
+
+% corresponds to
+\newcommand\corrto{%
+    \let\savearraystretch\arraystretch%
+    \renewcommand\arraystretch{0.3}%
+    \begin{array}{c}%
+        \stretchto{%
+            \scalerel*[\widthof{=}]{\wedge}%
+            {\rule{1ex}{3ex}}%
+        }{0.5ex}\\%
+        =%
+    \end{array}%
+    \let\arraystretch\savearraystretch%
+}
+
+% stacked logical operators
+\newcommand{\wedgevee}%
+{%
+    \mathrel{\substack{\wedge\\\vee}}%
+}%
+\newcommand{\veewedge}%
+{%
+    \mathrel{\substack{\vee\\\wedge}}%
+}%
+
+% (E)BNFs
+\newcommand{\bnfdef}{::=}
+
+\newcommand{\bnf}{\:\shortmid\:}
+
+
+%
+% Set operations
+%
+
+% disjoint union
+\providecommand*{\bigdotcup}{%
+    \mathbin{%
+        \mathpalette\@bigdotcup{}%
+    }%
+}%
+\newcommand*{\@bigdotcup}[2]{%
+    \ooalign{%
+        $\m@th#1\bigcup$\cr%
+        \hidewidth$\m@th#1\cdot$\hidewidth%
+    }%
+}%
+\providecommand*{\dotcup}{%
+    \mathbin{%
+        \mathpalette\@dotcup{}%
+    }%
+}%
+\newcommand*{\@dotcup}[2]{%
+    \ooalign{%
+        $\m@th#1\cup$\cr%
+        \hidewidth$\m@th#1\cdot$\hidewidth%
+    }%
+}%
+\providecommand*{\bigdotsqcup}{%
+    \mathbin{%
+        \mathpalette\@bigdotsqcup{}%
+    }%
+}%
+\newcommand*{\@bigdotsqcup}[2]{%
+    \ooalign{%
+        $\m@th#1\bigsqcup$\cr%
+        \hidewidth$\m@th#1\cdot$\hidewidth%
+    }%
+}%
+\providecommand*{\dotsqcup}{%
+    \mathbin{%
+        \mathpalette\@dotsqcup{}%
+    }%
+}%
+\newcommand*{\@dotsqcup}[2]{%
+    \ooalign{%
+        $\m@th#1\sqcup$\cr%
+        \hidewidth$\m@th#1\cdot$\hidewidth%
+    }%
+}%
+
+%
+% Closures
+%
+
+% \newcommand{\up}{\!\uparrow}
+
+% \newcommand{\down}{\!\downarrow}
+
+% \newcommand{\dc}[1]{#1\!\down\,}
+
+% \newcommand{\uc}[1]{#1\!\up\,}
+
+
+\newcommand{\up}{\!\!\uparrow}
+\newcommand{\down}{\!\!\downarrow}
+\newcommand{\dc}[1]{#1\down}
+\newcommand{\uc}[1]{#1\up}
+\newcommand{\dcwrt}[2]{#1\down_{#2}}
+\newcommand{\ucwrt}[2]{#1\up_{#2}}
+
+%
+% Logic
+%
+
+% inverse models
+\providecommand*{\Dashv}{%
+  \mathrel{%
+    \mathpalette\@Dashv\vDash%
+  }%
+}
+\newcommand*{\@Dashv}[2]{%
+  \reflectbox{$\m@th#1#2$}%
+}
+
+% logical equivalence (\models \ismod)
+\newcommand{\lequiv}{\vDash\hspace{-2pt}\Dashv}
+
+%
+% Complexity
+%
+
+\newcommand{\bigO} [1] {\mathcal{O}\paren{#1}}
+
+\newcommand{\littleO} [1] {o\paren{#1}}
+
+\newcommand{\bigOmega} [1] {\Omega\paren{#1}}
+
+\newcommand{\littleOmega} [1] {\omega\paren{#1}}
+
+\newcommand{\bigTheta} [1] {\Theta\paren{#1}}
+
+
+% blank symbol
+\newsavebox{\blankbox}
+\savebox{\blankbox}{\texttt{aa}}
+\newcommand\vartextvisiblespace[1][0.8\wd\blankbox]{%
+    \makebox[#1]{\kern.1em\rule{.4pt}{.5ex}%
+        \hrulefill%
+        \rule{.4pt}{.5ex}\kern.1em}%
+}%
+\newcommand{\blank}{\vartextvisiblespace}% For ease-of-use
+
+\newcommand{\SpaceT}{\mathsf{Space}}
+\DeclareDocumentCommand{\Space}{g g}%
+{%
+    \IfNoValueTF{#1}%
+    {%
+       \SpaceT%
+    }%
+    {%
+        \IfNoValueTF{#2}%
+        {%
+            % first parameter given
+            \SpaceT_{#1}%
+        }%
+        {%
+            % both parameters given
+            \SpaceT_{#1}\paren{#2}%
+        }%
+    }%
+}%
+
+\newcommand{\TimeT}{\mathsf{Time}}
+\DeclareDocumentCommand{\Time}{g g}%
+{%
+    \IfNoValueTF{#1}%
+    {%
+       \TimeT%
+    }%
+    {%
+        \IfNoValueTF{#2}%
+        {%
+            % first parameter given
+            \TimeT_{#1}%
+        }%
+        {%
+            % both parameters given
+            \TimeT_{#1}\paren{#2}%
+        }%
+    }%
+}%
+
+\newcommand{\ATIMET}{\mathsf{ATIME}}%
+\DeclareDocumentCommand{\ATIME}{g}%
+{%
+    \ATIMET\IfValueT{#1}{\paren{#1}}%
+}%
+\newcommand{\ASPACET}{\mathsf{ASPACE}}
+\DeclareDocumentCommand{\ASPACE}{g}%
+{%
+    \ASPACET\IfValueT{#1}{\paren{#1}}%
+}%
+\newcommand{\NTIMET}{\mathsf{NTIME}}
+\DeclareDocumentCommand{\NTIME}{g}%
+{%
+    \NTIMET\IfValueT{#1}{\paren{#1}}%
+}%
+\newcommand{\NSPACET}{\mathsf{NSPACE}}
+\DeclareDocumentCommand{\NSPACE}{g}%
+{%
+    \NSPACET\IfValueT{#1}{\paren{#1}}%
+}%
+
+\newcommand{\DTIMET}{\mathsf{DTIME}}
+\DeclareDocumentCommand{\DTIME}{g}%
+{%
+    \DTIMET\IfValueT{#1}{\paren{#1}}%
+}%
+\newcommand{\DSPACET}{\mathsf{DSPACE}}
+\DeclareDocumentCommand{\DSPACE}{g}%
+{%
+    \DSPACET\IfValueT{#1}{\paren{#1}}%
+}%
+
+\newcommand{\co}{\mathsf{co}}
+
+\newcommand{\RECURSIVE}{\mathsf{REC}}
+\newcommand{\RECENUM}{\mathsf{RE}}
+
+\newcommand{\APTIME}{\mathsf{APTIME}}
+\newcommand{\APSPACE}{\mathsf{APSPACE}}
+\newcommand{\AEXPTIME}{\mathsf{AEXPTIME}}
+\newcommand{\AEXPSPACE}{\mathsf{AEXPSPACE}}
+
+\newcommand{\LOGSPACE}{\mathsf{L}}
+\newcommand{\NLOGSPACE}{\mathsf{NL}}
+\newcommand{\PTIME}{\mathsf{P}}
+\newcommand{\NPTIME}{\mathsf{NP}}
+\newcommand{\PSPACE}{\mathsf{PSPACE}}
+\newcommand{\EXPTIME}{\mathsf{EXP}}
+\newcommand{\NEXPTIME}{\mathsf{NEXP}}
+\newcommand{\EXPSPACE}{\mathsf{EXPSPACE}}
+\newcommand{\ELEMENTARY}{\mathsf{ELEMENTARY}}
+\newcommand{\TOWER}{\mathsf{TOWER}}
+\newcommand{\PRIMREC}{\mathsf{PR}}
+\newcommand{\ACKERMANN}{\mathsf{ACKERMANN}}
+
+% k-fold exponential
+\newcommand{\expT}{\mathit{exp}}
+\DeclareDocumentCommand{\kexp}{m g}%
+{%
+    \expT_{#1} \IfValueT{#2}{\paren{#2}}%
+}%
+
+\DeclareDocumentCommand{\Tower}{g}%
+{%
+    \mathsf{Tower} \IfValueT{#1}{\paren{#1}}%
+}%
+
+% Ackermann
+\newcommand{\AckerT}{\mathsf{Acker}}
+\newcommand{\Acker}[2]{\AckerT\paren{#1,#2}}
+
+\newcommand{\polyT}{\text{poly}}
+\newcommand{\polyleq}{\leq_{\polyT}}
+\newcommand{\polygeq}{\geq_{\polyT}}
+
+%
+% Words
+%
+
+\newcommand{\subword}{\!\preceq}
+
+%
+% Automata theory
+%
+
+\newcommand{\tow} [1] {\xrightarrow{#1}}
+
+\newcommand{\towin}[2] {\tow{#1}_{#2}}
+
+\DeclareDocumentCommand{\lang}{ g }%
+{%
+    \IfNoValueTF{#1}%
+    {%
+        \mathcal{L}%
+    }%
+    {%
+        \mathcal{L} \paren{#1}%
+    }%
+}%
+
+\DeclareDocumentCommand{\olang}{ g }%
+{%
+    \IfNoValueTF{#1}%
+    {%
+        \mathcal{L}^\omega%
+    }%
+    {%
+        \mathcal{L}^\omega\!\paren{#1}%
+    }%
+}
+
+\DeclareDocumentCommand{\Parikh}{ g }%
+{%
+    \IfNoValueTF{#1}%
+    {%
+        \Psi%
+    }%
+    {%
+        \Psi\paren{#1}%
+    }%
+}%
+
+%
+% Grammars
+%
+
+% derivation
+\newcommand{\derive}{\Rightarrow}
+
+
+\endinput

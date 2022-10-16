@@ -1,0 +1,48 @@
+\documentclass[class=scrartcl,crop=false]{standalone}
+
+\usepackage{../style/smalgo}
+
+\begin{document}
+
+\section{SMAlgo}
+
+\begin{algorithmic}
+\If {$i\geq maxval$}
+    \State $i\gets 0$
+\Else
+    \If {$i+k\leq maxval$}
+        \State $i\gets i+k$
+    \EndIf
+\EndIf
+\end{algorithmic}
+
+\begin{algorithmic}[1]
+        \Cmd $n = \max_{x \in V}\ \Omega(x)$
+        \IfElseCond{$n = 0$}
+        {
+            \Return $W_E = V, W_A = \emptyset$
+        }
+        {
+            \Cmd $N = \{ x \in V \mid \Omega (x) = n\}$
+            \IfElseCond{$n$ even}
+            {
+                \Cmd $P = E, \overline{P} = A$
+            }
+            {
+                \Cmd $P = A, \overline{P} = E$
+            }
+            \Cmd $A = {Attr}_P^G (N)$
+            \Cmd $W_E', W_A' = solve (G_{V \setminus A})$
+            \IfElseCond{ $W_P' = V \setminus A$ }
+            {
+                \Return $W_P = V, W_{\overline{P}} = \emptyset$
+            }
+            {
+                \Cmd $B = {Attr}_{\overline{P}}^G ( W_{\overline{P}}' )$
+                \Cmd $W_A'', W_E'' = solve (G_{V \setminus B})$
+                \Return $W_P = W_P'', W_{\overline{P}} = W_{\overline{P}}'' \cup B$
+            }
+        }
+\end{algorithmic}
+
+\end{document}

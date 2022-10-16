@@ -1,0 +1,75 @@
+\documentclass
+[
+    folder=../style,
+    a4paper,
+    12pt,
+    parskip=half-,
+    numbers=noenddot,
+    % twoside,
+    % fleqn,
+]{../style/smbook}
+
+\usepackage[subpreambles=false]{standalone}
+
+\title
+{
+    SMBook
+}
+\author
+{
+    Sebastian Muskalla
+}
+
+\addbibresource{test.bib}
+
+\begin{document}
+
+\input{title}
+
+\newpage
+\part{Part}
+\chapter{Chapter}
+
+\input{blindtext}
+
+\input{text}
+
+\input{glyphs}
+
+\input{math}
+
+\input{symbols}
+
+\input{operators}
+
+\input{slantedleq}
+
+\input{nth}
+
+\input{problemboxes}
+
+\input{paragraphs}
+
+\input{theorems}
+
+\input{proofs}
+
+\input{colors}
+
+\input{emph}
+
+\input{footnotes}
+
+\input{paragraphs}
+
+\input{algo}
+
+\input{figures}
+
+\input{tikz}
+
+\input{geilerpfeil}
+
+\input{bibliography}
+
+\end{document}

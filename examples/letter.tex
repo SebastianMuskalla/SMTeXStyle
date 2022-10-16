@@ -1,0 +1,71 @@
+\documentclass
+[
+    folder=../style,
+    a4paper,
+    12pt,
+    parskip=half-,
+    version=last,
+    % twoside,
+    % fleqn,
+]{../style/smletter}
+
+\title
+{
+    SMLetter
+}
+\author
+{
+    Sebastian Muskalla
+}
+
+\setkomavar{fromname}{Sebastian Muskalla}
+\setkomavar{fromaddress}
+{%
+  Musterstr. 42
+  \\
+  01234 Musterstadt
+}%
+\setkomavar{fromurl}[Website:~]{www.muster.com}
+\setkomavar{fromphone}{01234~56789}
+\setkomavar{fromfax}{01234~56789}
+\setkomavar{frommobilephone}{01234~56789}
+\setkomavar{fromemail}{max.muster@muster.com}
+
+\begin{document}
+
+    \begin{letter}
+    {%
+        Erika Musterfrau
+        \\
+        Musterweg 43
+        \\
+        56789 Musterhausen
+    }%
+
+        \setkomavar{subject}{SMLetter}
+
+        \opening{Dear Frau Musterfrau,}
+
+        I am writing to you on behalf of the Wikipedia project, an endeavour to build a fully-fledged multilingual encyclopaedia in an entirely open manner, to ask for permission to use your copyrighted material.
+
+        \ldots
+
+        That said, allow me to reiterate that your material will be used to the noble end of providing a free collection of knowledge for everyone; naturally enough, only if you agree. If that is the case, could you kindly fill in the attached form and post it back to me? We shall greatly appreciate it.
+
+        Thank you for your time and consideration.
+
+        I look forward to your reply.
+
+        \closing{With best regards}
+
+        \ps{P.S. You can find the full text of GFDL license at ...}
+
+        \encl
+        {%
+        Anlage 1\\
+        Anlage 2%
+        }%
+
+    \end{letter}
+
+\end{document}
