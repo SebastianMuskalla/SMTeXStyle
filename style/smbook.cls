@@ -258,6 +258,8 @@
         ignoreheadfoot,
         left=3.0cm,
         right=3.0cm,
+        % left=3.5cm,
+        % right=2.5cm,
         top=3cm,
         foot=1.5cm,
         bottom=3cm,
@@ -310,10 +312,10 @@
     \ohead{\normalfont\headmark}
     % inner footmark: empty in both styles
     \ifoot*{}
-    % center footmark: pagenumber in both styles
-    \cfoot*{\pagemark}
-    % outer footmark: empty in both styles
-    \ofoot*{}
+    % center footmark: empty in both styles
+    \cfoot*{}
+    % outer footmark: pagenumber in both styles
+    \ofoot*{\pagemark}
 \else%
 % NON-TWOSIDE LAYOUT
     \ihead*{}

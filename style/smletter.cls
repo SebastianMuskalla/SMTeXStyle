@@ -243,6 +243,10 @@
 % custom environments
 \RequirePackage{environ}
 
+% for links
+\RequirePackage{hyperref}
+
+
 \RequirePackage{ulem}
 % set emph back to normal (instead of underlined)
 \normalem%
@@ -289,7 +293,6 @@
 
 % decrease width of address field a bit to avoid overflow into the non-visible area
 \setplength{toaddrwidth}{80mm}
-
 
 
 % position of location box
@@ -345,12 +348,12 @@
     \usekomavar{fromaddress}%
     \leavevmode%
     \\%
-    \Ifkomavarempty{fromurl}{}%
+    \Ifkomavarempty{fromemail}{}%
     {%
         \leavevmode%
         \\%
-        \Ifkomavarempty*{fromurl}{}{{\footnotesize\usekomavar*{fromurl}}~}%
-        \usekomavar{fromurl}%
+        \Ifkomavarempty*{fromemail}{}{{\footnotesize\usekomavar*{fromemail}}~}%
+        \usekomavar{fromemail}%
     }%
     \Ifkomavarempty{fromphone}{}%
     {%
@@ -373,12 +376,12 @@
         \Ifkomavarempty*{frommobilephone}{}{{\footnotesize\usekomavar*{frommobilephone}}~}%
         \usekomavar{frommobilephone}%
     }%
-    \Ifkomavarempty{fromemail}{}%
+    \Ifkomavarempty{fromurl}{}%
     {%
         \leavevmode%
         \\%
-        \Ifkomavarempty*{fromemail}{}{{\footnotesize\usekomavar*{fromemail}}~}%
-        \usekomavar{fromemail}%
+        \Ifkomavarempty*{fromurl}{}{{\footnotesize\usekomavar*{fromurl}}~}%
+        \usekomavar{fromurl}%
     }%
     \leavevmode
     \\[1mm]
